@@ -52,12 +52,12 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel  } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 
 export default  {
   name: 'Tab1',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput },
+  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonButton, IonItem, IonList, IonLabel },
   data() {
     return{
       "baza": [
@@ -84,7 +84,6 @@ export default  {
             "cena":4500
         }
       ],
-      //baza: db.json.baza,
       marka:"",
       model:"",
       kolor:"",
