@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Wyszukiwarka pojazdu firmy PAOSMI</ion-title>
+        <ion-title>Wyszukiwarka</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
