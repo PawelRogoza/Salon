@@ -78,7 +78,22 @@ export default  {
         drzwi: this.drzwi,
         cena: this.cena
       }
-      console.log(pojazd);
+      fetch("http://localhost:3000/baza", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(pojazd)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      alert("Dodano pojazd");
     }
   }
 }

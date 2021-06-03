@@ -60,30 +60,6 @@ export default  {
   components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonButton, IonItem, IonList, IonLabel },
   data() {
     return{
-      "baza": [
-        {
-            "id":0,
-            "marka":"BMW",
-            "model":"E36",
-            "kolor":"Czarny",
-            "rocznik":1999,
-            "przebieg":300000,
-            "moc":100,
-            "drzwi":5,
-            "cena":5000
-        },
-        {
-            "id":1,
-            "marka":"Ałdi",
-            "model":"A3",
-            "kolor":"Srebrny",
-            "rocznik":1995,
-            "przebieg":450000,
-            "moc":90,
-            "drzwi":5,
-            "cena":4500
-        }
-      ],
       marka:"",
       model:"",
       kolor:"",
@@ -96,23 +72,21 @@ export default  {
     }
   },
   methods: {
-    znajdz(){
-      console.log(this.idToSearch);
-      for(var item of this.baza)
-      {
-        if(this.idToSearch != null && this.idToSearch == item.id)
-        {
-          console.log(item);
-          this.marka = item.marka;
-          this.model = item.model;
-          this.kolor = item.kolor;
-          this.rocznik = item.rocznik;
-          this.przebieg = item.przebieg;
-          this.moc = item.moc;
-          this.drzwi = item.drzwi;
-          this.cena = item.cena;
-        }
-      }
+    znajdz() {
+      fetch("http://localhost:3000/baza/"+this.idToSearch).then((res) => {
+        res
+          .json()
+          .then((data) => (
+            this.marka = data.marka,
+            this.model = data.model,
+            this.kolor = data.kolor,
+            this.rocznik = data.rocznik,
+            this.przebieg = data.przebieg,
+            this.moc = data.moc,
+            this.drzwi = data.drzwi,
+            this.cena = data.cena))
+          .catch((err) => console.log(err));
+      });
     }
   }
 }
