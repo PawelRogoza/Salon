@@ -32,6 +32,17 @@
       "drzwi": "5",
       "cena": "80000",
       "id": 2
+    },
+    {
+      "marka": "Ford",
+      "model": "Escort",
+      "kolor": "Czarny",
+      "rocznik": "2008",
+      "przebieg": "42904",
+      "moc": "170",
+      "drzwi": "5",
+      "cena": "15000",
+      "id": 3
     }
   ]
 }

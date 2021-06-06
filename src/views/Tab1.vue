@@ -16,12 +16,8 @@
           <ion-list>
             <ion-item>
               <ion-label position="floating">Indeks pojazdu</ion-label>
-              <ion-input v-model.number="idToSearch" type="number" value="0" min="0" max="9999" step="1"></ion-input>
+              <ion-input @ionChange="searchCar" v-model.number="idToSearch" type="number" value="0" min="0" max="9999" step="1"></ion-input>
             </ion-item>
-          </ion-list>
-          <ion-item>
-            <ion-button @click="znajdz()">Wyszukaj</ion-button>
-          </ion-item>
           <ion-item>
             <ion-label>Marka: {{marka}}</ion-label>
           </ion-item>
@@ -46,47 +42,50 @@
           <ion-item>
             <ion-label>Cena: {{cena}}</ion-label>
           </ion-item>
+          </ion-list>
         </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel  } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonList, IonLabel  } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 
 export default  {
   name: 'Tab1',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonButton, IonItem, IonList, IonLabel },
+  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonItem, IonList, IonLabel },
   data() {
     return{
-      marka:"",
-      model:"",
-      kolor:"",
-      rocznik:0,
-      przebieg:0,
-      moc:0,
-      drzwi:0,
-      cena:0,
-      idToSearch:0
+      marka:null,
+      model:null,
+      kolor:null,
+      rocznik:null,
+      przebieg:null,
+      moc:null,
+      drzwi:null,
+      cena:null,
+      idToSearch:null
     }
   },
   methods: {
-    znajdz() {
-      fetch("http://localhost:3000/baza/"+this.idToSearch).then((res) => {
-        res
-          .json()
-          .then((data) => (
-            this.marka = data.marka,
-            this.model = data.model,
-            this.kolor = data.kolor,
-            this.rocznik = data.rocznik,
-            this.przebieg = data.przebieg,
-            this.moc = data.moc,
-            this.drzwi = data.drzwi,
-            this.cena = data.cena))
-          .catch((err) => console.log(err));
-      });
+    searchCar() {
+      if(this.idToSearch != null){
+        fetch("http://localhost:3000/baza/"+this.idToSearch).then((res) => {
+          res
+            .json()
+            .then((data) => (
+              this.marka = data.marka,
+              this.model = data.model,
+              this.kolor = data.kolor,
+              this.rocznik = data.rocznik,
+              this.przebieg = data.przebieg,
+              this.moc = data.moc,
+              this.drzwi = data.drzwi,
+              this.cena = data.cena))
+            .catch((err) => console.log(err));
+        });
+      }
     }
   }
 }

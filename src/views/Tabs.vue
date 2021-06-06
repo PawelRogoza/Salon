@@ -3,17 +3,17 @@
     <ion-tabs>
       <ion-tab-bar>
         <ion-tab-button tab="tab1" href="/tabs/tab1">
-          <ion-icon name="add"></ion-icon>
+          <ion-icon name="search-circle-outline"></ion-icon>
           <ion-label>Wyszukaj</ion-label>
         </ion-tab-button>
           
         <ion-tab-button tab="tab2" href="/tabs/tab2">
-          <ion-icon name="add"></ion-icon>
+          <ion-icon name="add-circle-outline"></ion-icon>
           <ion-label>Dodaj</ion-label>
         </ion-tab-button>
         
         <ion-tab-button tab="tab3" href="/tabs/tab3">
-          <ion-icon name="add"></ion-icon>
+          <ion-icon name="build-outline"></ion-icon>
           <ion-label>Modyfikuj</ion-label>
         </ion-tab-button>
       </ion-tab-bar>

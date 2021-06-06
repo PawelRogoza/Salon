@@ -39,10 +39,10 @@
         <ion-item>
           <ion-input v-model="cena" type="number" value="0" min="0" max="5000000" step="50">Cena: </ion-input>
         </ion-item>
-      </ion-list>
       <ion-item>
         <ion-button @click="dodajPojazd()">Dodaj</ion-button>
       </ion-item>
+      </ion-list>
     </ion-content>
   </ion-page>
 </template>
@@ -93,6 +93,16 @@ export default  {
       .catch((error) => {
         console.error('Error:', error);
       });
+
+      this.marka = String.prototype;
+      this.model = String.prototype;
+      this.kolor = String.prototype;
+      this.rocznik = Number;
+      this.przebieg = Number;
+      this.moc = Number;
+      this.drzwi = Number;
+      this.cena = Number;
+
       alert("Dodano pojazd");
     }
   }
