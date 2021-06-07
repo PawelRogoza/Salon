@@ -2,48 +2,47 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Modyfikuj</ion-title>
+        <ion-title>Modify existing entry</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Modyfikuj</ion-title>
+          <ion-title size="large">Modify existing entry</ion-title>
         </ion-toolbar>
       </ion-header>   
-    <ExploreContainer name="Tab 3 page" />
       <div id="container">
         <ion-list>
           <ion-item>
-            <ion-label position="floating">Indeks pojazdu</ion-label>
+            <ion-label position="floating">Index</ion-label>
             <ion-input @ionChange="onValueChanged" v-model.number="idToChange" type="number" value="" min="0" max="9999" step="1"></ion-input>
           </ion-item>
         <ion-item>
-          <ion-input v-model="p_marka" inputmode="text" value="">Marka: </ion-input>
+          <ion-input v-model="p_marka" inputmode="text" value="">Brand: </ion-input>
         </ion-item>
         <ion-item>
           <ion-input v-model="p_model" inputmode="text" value="">Model: </ion-input>
         </ion-item>  
         <ion-item>
-          <ion-input v-model="p_kolor" inputmode="text" value="">Kolor: </ion-input>
+          <ion-input v-model="p_kolor" inputmode="text" value="">Color: </ion-input>
         </ion-item>  
         <ion-item>
-          <ion-input v-model="p_rocznik" type="number" value="2021" min="1950" max="2077" step="1">Rocznik: </ion-input>
+          <ion-input v-model="p_rocznik" type="number" value="2021" min="1950" max="2077" step="1">Year: </ion-input>
         </ion-item>
         <ion-item>
-          <ion-input v-model="p_przebieg" type="number" value="1" min="1" max="1000000" step="1">Przebieg: </ion-input>
+          <ion-input v-model="p_przebieg" type="number" value="1" min="1" max="1000000" step="1">Mileage: </ion-input>
         </ion-item>
         <ion-item>
-          <ion-input v-model="p_moc" type="number" value="50" min="1" max="5000" step="1">Moc: </ion-input>
+          <ion-input v-model="p_moc" type="number" value="50" min="1" max="5000" step="1">Power: </ion-input>
         </ion-item>
         <ion-item>
-          <ion-input v-model="p_drzwi" type="number" value="5" min="1" max="20" step="1">Drzwi: </ion-input>
+          <ion-input v-model="p_drzwi" type="number" value="5" min="1" max="20" step="1">Doors: </ion-input>
         </ion-item>
         <ion-item>
-          <ion-input v-model="p_cena" type="number" value="0" min="0" max="5000000" step="50">Cena: </ion-input>
+          <ion-input v-model="p_cena" type="number" value="0" min="0" max="5000000" step="50">Price: </ion-input>
         </ion-item>
         <ion-item>
-          <ion-button @click="zmien">Zmień</ion-button>
+          <ion-button @click="zmien">Change</ion-button>
         </ion-item>
         </ion-list>
       </div>
@@ -53,11 +52,10 @@
 
 <script>
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
 
 export default  {
-  name: 'Tab3',
-  components: { ExploreContainer, IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel },
+  name: 'Change',
+  components: { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel },
     data() {
     return{
       p_marka:null,
@@ -107,8 +105,6 @@ export default  {
         this.p_moc=null;
         this.p_drzwi=null;
         this.p_cena=null;
-
-        console.log("Zmieniono pojazd "+this.idToChange);
       }
     },
     onValueChanged(){

@@ -2,19 +2,19 @@
   <ion-page>
     <ion-tabs>
       <ion-tab-bar>
-        <ion-tab-button tab="tab1" href="/tabs/tab1">
+        <ion-tab-button tab="search" href="/tabs/search">
           <ion-icon name="search-circle-outline"></ion-icon>
-          <ion-label>Wyszukaj</ion-label>
+          <ion-label>Search</ion-label>
         </ion-tab-button>
           
-        <ion-tab-button tab="tab2" href="/tabs/tab2">
+        <ion-tab-button tab="add" href="/tabs/add">
           <ion-icon name="add-circle-outline"></ion-icon>
-          <ion-label>Dodaj</ion-label>
+          <ion-label>Add</ion-label>
         </ion-tab-button>
         
-        <ion-tab-button tab="tab3" href="/tabs/tab3">
+        <ion-tab-button tab="change" href="/tabs/change">
           <ion-icon name="build-outline"></ion-icon>
-          <ion-label>Modyfikuj</ion-label>
+          <ion-label>Modify</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
