@@ -13,28 +13,39 @@
       </ion-header>
       <ion-list>
         <ion-item>
-          <ion-input v-model="marka" inputmode="text" value="">Brand: </ion-input>
+          <ion-label>Brand: </ion-label>
+          <ion-input v-model="marka" type="text" value=""/>
         </ion-item>
         <ion-item>
-          <ion-input v-model="model" inputmode="text" value="">Model: </ion-input>
+          <ion-label>Model: </ion-label>
+          <ion-input v-model="model" type="text" value=""/>
         </ion-item>  
         <ion-item>
-          <ion-input v-model="kolor" inputmode="text" value="">Color: </ion-input>
+          <ion-label>Color: </ion-label>
+          <ion-input v-model="kolor" type="text" value=""/>
         </ion-item>  
         <ion-item>
-          <ion-input v-model="rocznik" type="number" value="2021" min="1950" max="2077" step="1">Year: </ion-input>
+          <ion-label>Year: </ion-label>
+          <ion-input v-model="rocznik" type="number" value="2021" min="1950" max="2077" step="1"/>
         </ion-item>
         <ion-item>
-          <ion-input v-model="przebieg" type="number" value="1" min="1" max="1000000" step="1">Mileage: </ion-input>
+          <ion-label>Mileage: </ion-label>
+          <ion-input v-model="przebieg" type="number" value="1" min="1" max="1000000" step="1"/>
+          <i>km</i>
         </ion-item>
         <ion-item>
-          <ion-input v-model="moc" type="number" value="50" min="1" max="5000" step="1">Power: </ion-input>
+          <ion-label>Power: </ion-label>
+          <ion-input v-model="moc" type="number" value="50" min="1" max="1000" step="1"/>
+          <i>hp</i>
         </ion-item>
         <ion-item>
-          <ion-input v-model="drzwi" type="number" value="5" min="1" max="20" step="1">Doors: </ion-input>
+          <ion-label>Doors: </ion-label>
+          <ion-input v-model="drzwi" type="number" value="5" min="1" max="7" step="1"/>
         </ion-item>
         <ion-item>
-          <ion-input v-model="cena" type="number" value="0" min="0" max="5000000" step="50">Price: </ion-input>
+          <ion-label>Price: </ion-label>
+          <ion-input v-model="cena" type="number" value="0" min="0" max="5000000" step="50"/>
+          <i>€</i>
         </ion-item>
       <ion-item>
         <ion-button @click="dodajPojazd()">Add</ion-button>
@@ -45,11 +56,11 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel } from '@ionic/vue';
 
 export default  {
   name: 'Add',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonButton, IonItem, IonList  },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonButton, IonItem, IonList, IonLabel  },
     data() {
     return{
       marka:String.prototype,

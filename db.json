@@ -1,15 +1,3 @@
 {
-  "baza": [
-    {
-      "marka": " Ford",
-      "model": "Focus",
-      "kolor": "Black",
-      "rocznik": "2019",
-      "przebieg": "420",
-      "moc": "144",
-      "drzwi": "5",
-      "cena": "80000",
-      "id": 1
-    }
-  ]
+  "baza": []
 }
