@@ -11,31 +11,36 @@
           <ion-title size="large">Database</ion-title>
         </ion-toolbar>
       </ion-header>   
-      <ion-button @click="onClickedReloadPage">
-       <ion-icon size="large" src="../assets/icons/refresh-circle-outline.svg"/>
-      </ion-button>
+      <div class="onClickedReloadPage_Wrapper">
+        <ion-button size="large" fill="outline" @click="onClickedReloadPage">
+        <ion-icon size="medium" src="../assets/icons/refresh-circle-outline.svg"/>
+        </ion-button>
+      </div>
         <div id="container">
           <ion-list v-for="car in carBase" :key="car.id">
             <ion-item-sliding>
               <ion-item>
                 <ion-label class="ion-text-wrap">
-                  Brand: {{car.marka}} 
+                  Brand: <b>{{car.marka}}</b>
                   <br/>
-                  Model: {{car.model}} 
+                  Model: <b>{{car.model}}</b> 
                   <br/>
-                  Price: {{car.cena}}
+                  Price: <b>{{car.cena}} <i>€</i></b>
                   <br/>
                   Year: {{car.rocznik}} 
                   <br/>
-                  Mileage: {{car.przebieg}} 
+                  Mileage: {{car.przebieg}} <i>km</i>
                   <br/>
-                  Power: {{car.moc}}
+                  Power: {{car.moc}} <i>hp</i>
                   <br/>
                   Doors: {{car.drzwi}} 
                   <br/>
                   Color: {{car.kolor}}
                 </ion-label>
               </ion-item>
+              <ion-item-options side="start">
+                <ion-item-option @click="onModifyHandler(car.id)" color="warning">Modify</ion-item-option>
+              </ion-item-options>
               <ion-item-options side="end">
                 <ion-item-option @click="onDeleteHandler(car.id)" color="danger">Delete</ion-item-option>
               </ion-item-options>
@@ -54,11 +59,14 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonList, IonLabel, IonItemSliding, IonItemOption, IonItemOptions, IonIcon, IonButton, IonAlert  } from '@ionic/vue';
-
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonList, IonLabel, IonItemSliding, IonItemOption, IonItemOptions, IonIcon, IonButton, IonAlert } from '@ionic/vue';
+const API = 'https://localhost:44330/api/Car/';
 export default  {
   name: 'Search',
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonItem, IonList, IonLabel, IonItemSliding, IonItemOption, IonItemOptions, IonIcon, IonButton, IonAlert },
+  created() {
+    this.search();
+  },
   data() {
     return {
       isOpenRef: false,
@@ -80,42 +88,48 @@ export default  {
     }
   },
   methods: {
-    onDeleteHandler(id) {
-      this.idToDelete = id;
-      this.setOpen();
-    },
-    search() {
-      fetch("http://localhost:3000/baza").then((res) => {
-        res
-          .json()
-          .then((data) => this.carBase = data)
-          .catch((err) => console.log(err));
+  onDeleteHandler(id) {
+    this.idToDelete = id;
+    this.setOpen();
+  },
+  onModifyHandler(id) {
+    this.$router.push('/tabs/change/'+id);
+  },
+  search() {
+    fetch(API)
+    .then((res) => {
+      res
+        .json()
+        .then((data) => this.carBase = data)
+        .catch((err) => console.log(err));
+    });
+  },
+  onDeleteClicked(id) {
+    if(id != null){
+      fetch(API+id, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
-    },
-    onDeleteClicked(id) {
-      if(id != null){
-        fetch("http://localhost:3000/baza/"+id, {
-          method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-        window.location.reload();
-      }
-    },
-    onClickedReloadPage() {
       window.location.reload();
     }
   },
-  beforeMount(){
-      this.search()
+  onClickedReloadPage() {
+      window.location.reload();
+    }
   }
 }
 </script>
 
 <style scoped>
+.onClickedReloadPage_Wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 </style>

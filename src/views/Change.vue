@@ -13,10 +13,6 @@
       </ion-header>   
       <div id="container">
         <ion-list>
-          <ion-item>
-            <ion-label position="floating">Index</ion-label>
-            <ion-input @ionChange="onValueChanged" v-model.number="idToChange" type="number" value="" min="0" max="9999" step="1"></ion-input>
-          </ion-item>
         <ion-item>
           <ion-label>Brand: </ion-label>
           <ion-input v-model="p_marka" type="text" value=""/>
@@ -36,10 +32,12 @@
         <ion-item>
           <ion-label>Mileage: </ion-label>
           <ion-input v-model="p_przebieg" type="number" value="1" min="1" max="1000000" step="1"/>
+          <i>km</i>
         </ion-item>
         <ion-item>
           <ion-label>Power: </ion-label>
           <ion-input v-model="p_moc" type="number" value="50" min="1" max="1000" step="1"/>
+          <i>hp</i>
         </ion-item>
         <ion-item>
           <ion-label>Doors: </ion-label>
@@ -48,11 +46,12 @@
         <ion-item>
           <ion-label>Price: </ion-label>
           <ion-input v-model="p_cena" type="number" value="0" min="0" max="5000000" step="50"/>
+          <i>€</i>
         </ion-item>
+        </ion-list>
         <ion-item>
           <ion-button @click="zmien">Change</ion-button>
         </ion-item>
-        </ion-list>
       </div>
     </ion-content>
   </ion-page>
@@ -60,11 +59,14 @@
 
 <script>
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel } from '@ionic/vue';
-
+const API = 'https://localhost:44330/api/Car/';
 export default  {
-  name: 'Change',
+  name: 'Change', 
   components: { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel },
-    data() {
+  created() {
+    this.onPageLoad();
+  },
+  data() {
     return{
       p_marka:null,
       p_model:null,
@@ -78,46 +80,50 @@ export default  {
     }
   },
   methods: {
-    async zmien(){
+    zmien(){
       if(this.idToChange != null){
-        alert("Edytowanie pojazdu ["+this.idToChange+"]");
-
-        fetch("http://localhost:3000/baza/"+this.idToChange, {
+        var body = 
+        {
+          "id":this.idToChange,
+          "marka":this.p_marka,
+          "model":this.p_model,
+          "kolor":this.p_kolor,
+          "rocznik":this.p_rocznik,
+          "przebieg":this.p_przebieg,
+          "moc":this.p_moc,
+          "drzwi":this.p_drzwi,
+          "cena":this.p_cena
+        };
+        fetch(API+this.idToChange, {
           headers: {
             'Content-Type': 'application/json'
           },
           method: 'PUT',
-          body: JSON.stringify({
-            marka:this.p_marka,
-            model:this.p_model,
-            kolor:this.p_kolor,
-            rocznik:this.p_rocznik,
-            przebieg:this.p_przebieg,
-            moc:this.p_moc,
-            drzwi:this.p_drzwi,
-            cena:this.p_cena
-          })
+          body: JSON.stringify(body)
         })
         .then(data => {
           console.log('Success:', data);
+
+          this.p_marka=null;
+          this.p_model=null;
+          this.p_kolor=null;
+          this.p_rocznik=null;
+          this.p_przebieg=null;
+          this.p_moc=null;
+          this.p_drzwi=null;
+          this.p_cena=null;
         })
         .catch((error) => {
           console.error('Error:', error);
         });
 
-        this.p_marka=null;
-        this.p_model=null;
-        this.p_kolor=null;
-        this.p_rocznik=null;
-        this.p_przebieg=null;
-        this.p_moc=null;
-        this.p_drzwi=null;
-        this.p_cena=null;
+        window.location = '/tabs/search';
       }
     },
-    onValueChanged(){
-      if(this.idToChange != null){
-        fetch("http://localhost:3000/baza/"+this.idToChange).then((res) => {
+    onPageLoad(){
+      if(this.$route.params.id != null){
+        this.idToChange = this.$route.params.id;
+        fetch(API+this.idToChange).then((res) => {
           res
             .json()
             .then((data) => (

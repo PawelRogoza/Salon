@@ -12,10 +12,10 @@
           <ion-label>Add</ion-label>
         </ion-tab-button>
         
-        <ion-tab-button tab="change" href="/tabs/change">
+        <!-- <ion-tab-button tab="change" href="/tabs/change">
           <ion-icon size="large" src="../assets/icons/build-outline.svg"/>
           <ion-label>Modify</ion-label>
-        </ion-tab-button>
+        </ion-tab-button> -->
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
@@ -26,11 +26,6 @@ import { IonPage, IonTabs, IonTabButton, IonTabBar, IonLabel, IonIcon } from '@i
 
 export default {
   name: 'Tabs',
-  components: { IonPage, IonTabs, IonTabButton, IonTabBar, IonLabel, IonIcon },
-  setup() {
-    return {
-      
-    }
-  }
+  components: { IonPage, IonTabs, IonTabButton, IonTabBar, IonLabel, IonIcon }
 }
 </script>

@@ -16,6 +16,9 @@ const routes = [
       },
       {
         path: 'search',
+        meta: {
+          reload: true,
+        },
         component: () => import('@/views/Search.vue')
       },
       {
@@ -24,6 +27,10 @@ const routes = [
       },
       {
         path: 'change',
+        component: () => import('@/views/Change.vue')
+      },
+      {
+        path: 'change/:id',
         component: () => import('@/views/Change.vue')
       }
     ]

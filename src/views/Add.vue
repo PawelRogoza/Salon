@@ -47,17 +47,17 @@
           <ion-input v-model="cena" type="number" value="0" min="0" max="5000000" step="50"/>
           <i>€</i>
         </ion-item>
+      </ion-list>
       <ion-item>
         <ion-button @click="dodajPojazd()">Add</ion-button>
       </ion-item>
-      </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonButton, IonItem, IonList, IonLabel } from '@ionic/vue';
-
+const API = 'https://localhost:44330/api/Car';
 export default  {
   name: 'Add',
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonInput, IonButton, IonItem, IonList, IonLabel  },
@@ -85,7 +85,7 @@ export default  {
         drzwi: this.drzwi,
         cena: this.cena
       }
-      fetch("http://localhost:3000/baza", {
+      fetch(API, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
