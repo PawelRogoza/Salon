@@ -117,7 +117,7 @@ export default  {
           console.error('Error:', error);
         });
 
-        window.location = '/tabs/search';
+        window.location.href = '/tabs/search';
       }
     },
     onPageLoad(){

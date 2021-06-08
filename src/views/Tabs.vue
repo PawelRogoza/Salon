@@ -11,11 +11,6 @@
           <ion-icon size="large" src="../assets/icons/add-circle-outline.svg"/>
           <ion-label>Add</ion-label>
         </ion-tab-button>
-        
-        <!-- <ion-tab-button tab="change" href="/tabs/change">
-          <ion-icon size="large" src="../assets/icons/build-outline.svg"/>
-          <ion-label>Modify</ion-label>
-        </ion-tab-button> -->
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>

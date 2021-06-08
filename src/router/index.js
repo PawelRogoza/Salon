@@ -16,9 +16,6 @@ const routes = [
       },
       {
         path: 'search',
-        meta: {
-          reload: true,
-        },
         component: () => import('@/views/Search.vue')
       },
       {
